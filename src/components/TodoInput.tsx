@@ -38,8 +38,9 @@ const TodoInput = () => {
         }
         
         await dispatch(postTodos(newTodo));
-        //await dispatch(getTodos(token?.token));
+        await dispatch(getTodos(token?.token));
         setTodo('');
+        setDescription('');
     }
 
     return (
