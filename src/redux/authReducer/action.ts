@@ -5,7 +5,7 @@ import { LoginType } from "../../pages/Login";
 
 export const signup = (formData: Form) => (dispatch: any) => {
     dispatch({ type: AUTH_REQ });
-    axios.post('http://localhost:4000/users/register', formData)
+    axios.post('https://teste-falqon.onrender.com/users/register', formData)
         .then(res => {
             // console.log(res);
             dispatch({ type: REGISTER_SUCCESS, payload: res.data.msg });
@@ -18,7 +18,7 @@ export const signup = (formData: Form) => (dispatch: any) => {
 
 export const login = (formData: LoginType) => (dispatch: any) => {
     dispatch({ type: AUTH_REQ });
-    axios.post('http://localhost:4000/users/login', formData)
+    axios.post('https://teste-falqon.onrender.com/users/login', formData)
         .then(res => {
             console.log(res);
             dispatch({ type: AUTH_REQ_SUCCESS, payload: res.data });
@@ -39,7 +39,7 @@ export const logout = (token: string | null) => (dispatch: any) => {
     }
 
     dispatch({ type: AUTH_REQ });
-    axios.get('http://localhost:4000/users/logout', config)
+    axios.get('https://teste-falqon.onrender.com/users/logout', config)
         .then(res => {
             dispatch({ type: LOGOUT_SUCCESS })
         })
