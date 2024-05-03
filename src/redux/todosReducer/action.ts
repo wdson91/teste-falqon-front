@@ -21,7 +21,7 @@ export const getTodos = (token: string, q = '', dateInp = '', page = 1, limit = 
 
 
     dispatch({ type: GET_TODOS });
-    return axios.get(`https://teste-falqon.onrender.com/todo/?q=${q}&page=${page}&limit=${limit}`, config)
+    return axios.get(`http://localhost:4000/todo/?q=${q}&page=${page}&limit=${limit}`, config)
         .then(res => {
             dispatch({ type: GET_TODOS_SUCCESS, payload: { todos: res.data.todos, totalTodos: res.data.totalTodos } })
             // console.log(res)
@@ -40,7 +40,7 @@ export const postTodos = (newTodo: NewTodo) => (dispatch: any) => {
     };
 
     dispatch({ type: GET_TODOS });
-    return axios.post('https://teste-falqon.onrender.com/todo/addTodo', newTodo, config)
+    return axios.post('http://localhost:4000/todo/addTodo', newTodo, config)
         .then(res => {
             dispatch({ type: POST_TODOS_SUCCESS, payload: res.data })
             console.log(res)
@@ -64,7 +64,7 @@ export const deleteTodo = (id: string) => (dispatch: any) => {
     };
 
     dispatch({ type: GET_TODOS });
-    return axios.delete(`https://teste-falqon.onrender.com/todo/delete/${id}`, config)
+    return axios.delete(`http://localhost:4000/todo/delete/${id}`, config)
         .then(res => {
             // console.log(res)
             dispatch({ type: DELETE_TODOS_SUCCESS, payload: res.data.msg });
@@ -95,7 +95,7 @@ export const editTodo = (id: string, title: string, newStatus: boolean) => (disp
 
 
     dispatch({ type: GET_TODOS });
-    return axios.patch(`https://teste-falqon.onrender.com/todo/update/${id}`, finalData, config)
+    return axios.patch(`http://localhost:4000/todo/update/${id}`, finalData, config)
         .then(res => {
             console.log(res)
             dispatch({ type: UPDATE_TODOS_SUCCESS, payload: res.data.msg });
