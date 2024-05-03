@@ -23,7 +23,6 @@ export const getTodos = (token: string, q = '', dateInp = '', page = 1, limit = 
     dispatch({ type: GET_TODOS });
     return axios.get(`https://teste-falqon.onrender.com/todo/?q=${q}&page=${page}&limit=${limit}`, config)
         .then(res => {
-            console.log(res)
             dispatch({ type: GET_TODOS_SUCCESS, payload: { todos: res.data.todos, totalTodos: res.data.totalTodos } })
             // console.log(res)
         })
@@ -44,7 +43,6 @@ export const postTodos = (newTodo: NewTodo) => (dispatch: any) => {
     return axios.post('https://teste-falqon.onrender.com/todo/addTodo', newTodo, config)
         .then(res => {
             dispatch({ type: POST_TODOS_SUCCESS, payload: res.data })
-
             console.log(res)
         })
         .catch(err => {

@@ -16,7 +16,7 @@ const TodoInput = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         
-        if(!todo || !description){
+        if(!todo){
             toast({
                 title : "All fields are required",
                 description : "Can't post empty todo",
@@ -28,32 +28,21 @@ const TodoInput = () => {
             return;
         }
 
-
         const newTodo = {
             title: todo,
-            description: description,
             created_at: Date.now(),
             priority: Math.ceil(Math.random() * 10),
-            status: false
+            status: false,
+            description: description
         }
-        
+
         await dispatch(postTodos(newTodo));
         await dispatch(getTodos(token?.token));
         setTodo('');
         setDescription('');
     }
 
-    return (
-        <Box>
-            <form onSubmit={handleSubmit}>
-                <Flex w={{ base: '90%', sm: '90%', md: '90%', lg: '60%', xl: '50%' }} m={'auto'} alignItems={'center'} gap={'20px'}>
-                    <Input value={todo} onChange={(e) => setTodo(e.target.value)} focusBorderColor='none' border={'none'} borderBottom={'1px inset'} color={'gray.300'} m={'20px 0'} type='text' placeholder='Adicione uma tarefa' />
-                    <Input value={description} onChange={(e) => setDescription(e.target.value)} focusBorderColor='none' border={'none'} borderBottom={'1px inset'} color={'gray.300'} m={'20px 0'} type='text' placeholder='Adicione uma descrição' />
-                    <Button type='submit' w={'50px'} h={'45px'} id='addBtn' borderRadius={'50%'} bg={'#041955'} color={'gray.300'}>{<FaPlus />}</Button>
-                </Flex>
-            </form>
-        </Box>
-    )
+  
 }
 
 export default TodoInput;
